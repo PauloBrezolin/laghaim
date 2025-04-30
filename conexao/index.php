@@ -29,7 +29,7 @@ class RemoteDatabaseConnectionTest {
 $host = 'localhost';
 $username = 'root';
 $password = '';
-$database = 'kor_ndev_kaos_data';
+$database = 'laghaim';
 $connectionTest = new RemoteDatabaseConnectionTest($host, $username, $password, $database);
 echo $connectionTest->testConnection();
 
