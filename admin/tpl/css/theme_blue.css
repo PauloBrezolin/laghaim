@@ -1,0 +1,17 @@
+a { color:#1E4F74; text-decoration: none;}
+a:hover { color:#000000; text-decoration: none;}
+
+#header { background-color: #25282b; color:white;}
+.menua { background-color:#262e33; }
+.menub { background-color:#394248; }
+.contentblock { background-color:white; }
+.contentheader { background-color:#3e79a5; color:#9fbcd1; text-shadow: 1px 1px #000000; }
+.contentheader span { color:white; }
+
+.contentheader .menutd { border:1px solid #324B5D; border-width: 1px 1px 0 1px; background-color:#326286;}
+.contentheader .menutd a { color:#9FBCC8;}
+.contentheader .menutd a:hover { color:white; }
+
+.menua a { color:rgba(255,255,255,0.5);}
+.menua a:hover { color:white;}
+.menua .active { background-color: #394248; }

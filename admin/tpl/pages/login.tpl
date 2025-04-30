@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en">
+
+	<head>
+		<title>Admin Panel</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" href="tpl/css/styles.css" />
+        <link rel="stylesheet" type="text/css" href="tpl/css/theme_brown.css" title="theme_brown"/>		
+	</head>
+	
+	
+	<body id="login">
+            <div id="header"><span>Admin Panel</span></div>
+            
+            <form method="post">
+            <div id="loginbox">
+                
+                <!-- START BLOCK : loginform -->
+                <table width="400" cellpadding="4" cellspacing="0">
+                    <tr>
+                        <th colspan="2" style="background-color: #e0e0e0; border:1px dotted #cccccc; border-width:0 0 1px 0; text-align:left;">Login</th>
+                    </tr>
+                    <tr>
+                        <td>Username</td>
+                        <td><input type="text" name="username" /></td>
+                    </tr>
+                    <tr>
+                        <td>Password</td>
+                        <td><input type="password" name="password" /></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td><input type="checkbox" name="keeplogin" value="yes" /> Remember me on this pc</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>{ip} ({host})</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>
+                            <input type="submit" value="Login" />
+                            <input type="hidden" name="action" value="login" />
+                        </td>
+                    </tr>
+                </table>
+                <!-- END BLOCK : loginform -->
+                
+                <!-- START BLOCK : error -->
+                <p>Incorrect login details</p>
+                <meta http-equiv="refresh" content="2; url=login.php">
+                <!-- END BLOCK : error -->
+
+                <!-- START BLOCK : success -->
+                <meta http-equiv="refresh" content="0; url=index.php">
+                <!-- END BLOCK : success -->                
+            </div>
+            </form>
+	</body>
+	
+</html>

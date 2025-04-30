@@ -1,0 +1,14 @@
+a { color:#1E4F74; text-decoration: none;}
+a:hover { color:#000000; text-decoration: none;}
+
+#header { background-color: #272727; color:white;}
+.menua { background-color:#2C2C2C; }
+.menub { background-color:#404040; }
+.menua .active { background-color: #404040; }
+
+.contentheader { background-color:#973e3e; color:#dddddd; text-shadow: 1px 1px #000000; }
+.contentheader span { color:white; }
+
+.contentheader .menutd { border:1px solid #454545; border-width: 1px 1px 0 1px; background-color:#585858;}
+.contentheader .menutd a { color:#B4B4B4;}
+

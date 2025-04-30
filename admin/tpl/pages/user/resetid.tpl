@@ -1,0 +1,203 @@
+<!-- START BLOCK : showpage -->
+<script type="text/javascript" src="tpl/js/acpv2.js"></script>
+<script type="text/javascript">
+    // Initialize editor with custom theme and modules
+    var fullEditor = new Quill('#full-editor', {
+        modules: {
+            'toolbar': {container: '#full-toolbar'},
+            'link-tooltip': true,
+            'image-tooltip': true
+        },
+        theme: 'snow'
+    });
+
+    fullEditor.focus();
+
+    $('#full-editor').bind('click', function ()
+    {
+        fullEditor.focus();
+    });
+    
+    $('#resetid').unbind();
+    $('#resetid').bind('submit', function(event)
+    {
+        event.preventDefault();
+        
+        var url = $(this).attr('action');
+        
+        $('#msg').val(fullEditor.getHTML());
+        
+        $.post(url, $(this).serialize(),function(data) 
+        { 
+            $("#cblock").html(data);
+        });        
+    });    
+</script>
+
+<div class="contentheader">
+    {onlinedot} {username} > Password Reset<br /><br /><br />
+    <span>Password Reset</span> {banned}<br /><br />
+</div>
+
+<!-- START BLOCK : mailform -->
+<div class="content">
+    <p>This is to reset the password of a account. Below you can see the email that is being sent to the players, the text between brackets &#123; &#125; is automatically replaced with the right information when the mail is sent.<br />You can edit the email that is being sent to match the situation. The password only gets changed when you send the email.<br />The new password will be a random 8 figure password with numbers, letters and capitals</p>
+    <form method="post" action="resetid.php?uid={uid}" id="resetid">
+        <table>
+            <tr>
+                <td>Email</td>
+                <td>
+                    <select name="email">
+                        <option value="{curmail}">Current Email: {curmail}</option>
+                        <option value="{regmail}">Registration Email: {regmail}</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Subject</td>
+                <td><input type="text" name="subject" value="Password Reset" size="50" /></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+
+
+                    <div id="full-toolbar" class="toolbar">
+                        <span class="ql-format-group">
+                            <select title="Font" class="ql-font">
+                                <option value="sans-serif" selected="">Sans Serif</option>
+                                <option value="serif">Serif</option>
+                                <option value="monospace">Monospace</option>
+                            </select>
+                            <select title="Size" class="ql-size">
+                                <option value="10px">Small</option>
+                                <option value="13px" selected="">Normal</option>
+                                <option value="18px">Large</option>
+                                <option value="32px">Huge</option>
+                            </select>
+                        </span>
+                        <span class="ql-format-group">
+                            <span title="Bold" class="ql-format-button ql-bold"></span>
+                            <span class="ql-format-separator"></span>
+                            <span title="Italic" class="ql-format-button ql-italic"></span>
+                            <span class="ql-format-separator"></span>
+                            <span title="Underline" class="ql-format-button ql-underline"></span>
+                            <span class="ql-format-separator"></span>
+                            <span title="Strikethrough" class="ql-format-button ql-strike"></span>
+                        </span>
+                        <span class="ql-format-group">
+                            <select title="Text Color" class="ql-color">
+                                <option value="rgb(0, 0, 0)" label="rgb(0, 0, 0)" selected=""></option>
+                                <option value="rgb(230, 0, 0)" label="rgb(230, 0, 0)"></option>
+                                <option value="rgb(255, 153, 0)" label="rgb(255, 153, 0)"></option>
+                                <option value="rgb(255, 255, 0)" label="rgb(255, 255, 0)"></option>
+                                <option value="rgb(0, 138, 0)" label="rgb(0, 138, 0)"></option>
+                                <option value="rgb(0, 102, 204)" label="rgb(0, 102, 204)"></option>
+                                <option value="rgb(153, 51, 255)" label="rgb(153, 51, 255)"></option>
+                                <option value="rgb(255, 255, 255)" label="rgb(255, 255, 255)"></option>
+                                <option value="rgb(250, 204, 204)" label="rgb(250, 204, 204)"></option>
+                                <option value="rgb(255, 235, 204)" label="rgb(255, 235, 204)"></option>
+                                <option value="rgb(255, 255, 204)" label="rgb(255, 255, 204)"></option>
+                                <option value="rgb(204, 232, 204)" label="rgb(204, 232, 204)"></option>
+                                <option value="rgb(204, 224, 245)" label="rgb(204, 224, 245)"></option>
+                                <option value="rgb(235, 214, 255)" label="rgb(235, 214, 255)"></option>
+                                <option value="rgb(187, 187, 187)" label="rgb(187, 187, 187)"></option>
+                                <option value="rgb(240, 102, 102)" label="rgb(240, 102, 102)"></option>
+                                <option value="rgb(255, 194, 102)" label="rgb(255, 194, 102)"></option>
+                                <option value="rgb(255, 255, 102)" label="rgb(255, 255, 102)"></option>
+                                <option value="rgb(102, 185, 102)" label="rgb(102, 185, 102)"></option>
+                                <option value="rgb(102, 163, 224)" label="rgb(102, 163, 224)"></option>
+                                <option value="rgb(194, 133, 255)" label="rgb(194, 133, 255)"></option>
+                                <option value="rgb(136, 136, 136)" label="rgb(136, 136, 136)"></option>
+                                <option value="rgb(161, 0, 0)" label="rgb(161, 0, 0)"></option>
+                                <option value="rgb(178, 107, 0)" label="rgb(178, 107, 0)"></option>
+                                <option value="rgb(178, 178, 0)" label="rgb(178, 178, 0)"></option>
+                                <option value="rgb(0, 97, 0)" label="rgb(0, 97, 0)"></option>
+                                <option value="rgb(0, 71, 178)" label="rgb(0, 71, 178)"></option>
+                                <option value="rgb(107, 36, 178)" label="rgb(107, 36, 178)"></option>
+                                <option value="rgb(68, 68, 68)" label="rgb(68, 68, 68)"></option>
+                                <option value="rgb(92, 0, 0)" label="rgb(92, 0, 0)"></option>
+                                <option value="rgb(102, 61, 0)" label="rgb(102, 61, 0)"></option>
+                                <option value="rgb(102, 102, 0)" label="rgb(102, 102, 0)"></option>
+                                <option value="rgb(0, 55, 0)" label="rgb(0, 55, 0)"></option>
+                                <option value="rgb(0, 41, 102)" label="rgb(0, 41, 102)"></option>
+                                <option value="rgb(61, 20, 102)" label="rgb(61, 20, 102)"></option>
+                            </select>
+                            <span class="ql-format-separator"></span>
+                            <select title="Background Color" class="ql-background">
+                                <option value="rgb(0, 0, 0)" label="rgb(0, 0, 0)"></option>
+                                <option value="rgb(230, 0, 0)" label="rgb(230, 0, 0)"></option>
+                                <option value="rgb(255, 153, 0)" label="rgb(255, 153, 0)"></option>
+                                <option value="rgb(255, 255, 0)" label="rgb(255, 255, 0)"></option>
+                                <option value="rgb(0, 138, 0)" label="rgb(0, 138, 0)"></option>
+                                <option value="rgb(0, 102, 204)" label="rgb(0, 102, 204)"></option>
+                                <option value="rgb(153, 51, 255)" label="rgb(153, 51, 255)"></option>
+                                <option value="rgb(255, 255, 255)" label="rgb(255, 255, 255)" selected=""></option>
+                                <option value="rgb(250, 204, 204)" label="rgb(250, 204, 204)"></option>
+                                <option value="rgb(255, 235, 204)" label="rgb(255, 235, 204)"></option>
+                                <option value="rgb(255, 255, 204)" label="rgb(255, 255, 204)"></option>
+                                <option value="rgb(204, 232, 204)" label="rgb(204, 232, 204)"></option>
+                                <option value="rgb(204, 224, 245)" label="rgb(204, 224, 245)"></option>
+                                <option value="rgb(235, 214, 255)" label="rgb(235, 214, 255)"></option>
+                                <option value="rgb(187, 187, 187)" label="rgb(187, 187, 187)"></option>
+                                <option value="rgb(240, 102, 102)" label="rgb(240, 102, 102)"></option>
+                                <option value="rgb(255, 194, 102)" label="rgb(255, 194, 102)"></option>
+                                <option value="rgb(255, 255, 102)" label="rgb(255, 255, 102)"></option>
+                                <option value="rgb(102, 185, 102)" label="rgb(102, 185, 102)"></option>
+                                <option value="rgb(102, 163, 224)" label="rgb(102, 163, 224)"></option>
+                                <option value="rgb(194, 133, 255)" label="rgb(194, 133, 255)"></option>
+                                <option value="rgb(136, 136, 136)" label="rgb(136, 136, 136)"></option>
+                                <option value="rgb(161, 0, 0)" label="rgb(161, 0, 0)"></option>
+                                <option value="rgb(178, 107, 0)" label="rgb(178, 107, 0)"></option>
+                                <option value="rgb(178, 178, 0)" label="rgb(178, 178, 0)"></option>
+                                <option value="rgb(0, 97, 0)" label="rgb(0, 97, 0)"></option>
+                                <option value="rgb(0, 71, 178)" label="rgb(0, 71, 178)"></option>
+                                <option value="rgb(107, 36, 178)" label="rgb(107, 36, 178)"></option>
+                                <option value="rgb(68, 68, 68)" label="rgb(68, 68, 68)"></option>
+                                <option value="rgb(92, 0, 0)" label="rgb(92, 0, 0)"></option>
+                                <option value="rgb(102, 61, 0)" label="rgb(102, 61, 0)"></option>
+                                <option value="rgb(102, 102, 0)" label="rgb(102, 102, 0)"></option>
+                                <option value="rgb(0, 55, 0)" label="rgb(0, 55, 0)"></option>
+                                <option value="rgb(0, 41, 102)" label="rgb(0, 41, 102)"></option>
+                                <option value="rgb(61, 20, 102)" label="rgb(61, 20, 102)"></option>
+                            </select>
+                        </span>
+                        <span class="ql-format-group">
+                            <span title="List" class="ql-format-button ql-list"></span>
+                            <span class="ql-format-separator"></span>
+                            <span title="Bullet" class="ql-format-button ql-bullet"></span>
+                            <span class="ql-format-separator"></span>
+                            <select title="Text Alignment" class="ql-align">
+                                <option value="left" label="Left" selected=""></option>
+                                <option value="center" label="Center"></option>
+                                <option value="right" label="Right"></option>
+                                <option value="justify" label="Justify"></option>
+                            </select>
+                        </span>
+                        <span class="ql-format-group">
+                            <span title="Link" class="ql-format-button ql-link"></span>
+                        </span>
+                        <span title="Image" class="ql-format-button ql-image"></span>
+                    </div>
+
+                    <div id="full-editor" class="editor" style="background-color:white; border:1px solid #cccccc; text-align:left;">Hello &#123;username&#125;,<br /><br />Your password has been reset by a GM.<br />Here is your new account information:<br /><br /><ul><li><b>Username:</b> &#123;username&#125;</li><li><b>Password:</b> &#123;password&#125;</li><li><b>Pin Code:</b> &#123;securitycode&#125;</li></ul></ul><br />Regards,<br /></div>                
+
+
+                </td>
+            </tr>
+        </table>
+        <br />
+        <input type="submit" value="Change password and send email" />
+        <input type="hidden" name="action" value="reset" />
+        <input type="hidden" name="content" id="msg" value="" />
+    </form>
+    <!-- END BLOCK : mailform -->
+
+
+    <!-- START BLOCK : error -->
+    {msg}
+    <!-- END BLOCK : error -->
+
+</div>
+<!-- END BLOCK : showpage -->
+
+<!-- INCLUDE BLOCK : noperm -->

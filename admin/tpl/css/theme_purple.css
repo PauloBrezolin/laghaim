@@ -1,0 +1,13 @@
+a { color:#1E4F74; text-decoration: none;}
+a:hover { color:#000000; text-decoration: none;}
+
+#header { background-color: #242426;}
+.menua { background-color:#27272C; }
+.menub { background-color:#3A3A40; }
+.menua .active { background-color: #3A3A40; }
+
+.contentheader { background-color:#545480; color:#999CB4; text-shadow: 1px 1px #000000; }
+
+.contentheader .menutd { border:1px solid #3A3A4D; border-width: 1px 1px 0 1px; background-color:#444468;}
+.contentheader .menutd a { color:#A0A2B1;}
+
