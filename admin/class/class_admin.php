@@ -87,44 +87,43 @@ class Admin
         return false;
     }
     
-    function doLogin($username, $password, $cookie = false)
+    public function doLogin($username, $password, $cookie = false)
     {
-        if(!$db = db::getConnection())
+        if (!$db = db::getConnection()) {
             return false;
-        
-        $query = sprintf('SELECT a_index, a_username, a_password
-                          FROM %s.t_admininfo 
-                          WHERE a_username = :username 
-                          AND a_password = md5(:password)', 
-                Config::DB_WEB);
-        
-         var_dump( $query);   
-        $dbh = $db->prepare($query);
-        $dbh->bindParam(':username', $username, PDO::PARAM_STR);
-        $dbh->bindParam(':password', $password, PDO::PARAM_STR);
-        var_dump($username);
-        var_dump($password);
-        if(!$dbh->execute())
+        }
+
+        $sql = "
+        SELECT a_index, a_username, a_password
+            FROM " . Config::DB_WEB . ".t_admininfo
+        WHERE a_username = :username
+        ";
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':username', $username, PDO::PARAM_STR);
+        if (!$stmt->execute()) {
             return false;
-        
-        $r = $dbh->fetch();
-        if($r == null)
-        {
+        }
+
+        $r = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (!$r) {
             $this->_failLog($username, $password);
             return false;
         }
-        
-        $id = $r['a_index'];
-        $key = hash('sha512', $r['a_index'] . $r['a_username'] . $r['a_password']);
-        
+
+        if (md5($password) !== $r['a_password']) {
+            $this->_failLog($username, $password);
+            return false;
+        }
+
+        $id  = $r['a_index'];
+        $key = hash('sha512', $id . $r['a_username'] . $r['a_password']);
         $_SESSION['admin02login'] = $id . ':' . $key;
-        
-        if($cookie)
-            setcookie("admin02login", $id . ':' . $key, time() + 60 * 60 * 24 * 365, '/');        
-        
-        $this->_loginLog($r['a_username']);            
-        return true;        
-        
+        if ($cookie) {
+            setcookie('admin02login', $_SESSION['admin02login'], time() + 86400 * 365, '/');
+        }
+
+        $this->_loginLog($r['a_username']);
+        return true;
     }
     
     private function _loginLog($username)
@@ -157,11 +156,10 @@ class Admin
         
         $dbh = $db->prepare($query);
         
-        $dbh->bindParam(':username', $username);
-        $dbh->bindParam(':ip', $ip);
-        $dbh->bindParam(':hostname', $host);
-        var_dump($username, $password,$ip, $host); die;
-        $dbh->execute();        
+        $dbh->bindParam(':admin',    $username, PDO::PARAM_STR);
+        $dbh->bindParam(':ip',       $ip,       PDO::PARAM_STR);
+        $dbh->bindParam(':hostname', $host,     PDO::PARAM_STR);
+        $dbh->execute();  
     }
     
     private function _failLog($username, $password)
@@ -187,7 +185,7 @@ class Admin
             (
                 UNIX_TIMESTAMP(),
                 :username,
-                :password',
+                :password,
                 :ip,
                 :hostname
             )", 
@@ -370,4 +368,3 @@ class Admin
     define('RIGHT_VIEWTITLES', 72);
     define('RIGHT_VIEWHACKLOGS', 73);
     define('RIGHT_VIEWTRADEAGENT', 74);
-

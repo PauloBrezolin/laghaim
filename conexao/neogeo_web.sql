@@ -259,7 +259,7 @@ CREATE TABLE `t_logfind`  (
   `a_filesize` int(11) NOT NULL DEFAULT 0,
   `a_password` varchar(12) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT '',
   `a_date_add` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
-  `a_date_finish` timestamp(0) NOT NULL,
+  `a_date_finish` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`a_index`) USING BTREE
 ) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
